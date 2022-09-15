@@ -18,7 +18,7 @@ let reqlisten = function(req, res){
             res.end("Jackson Idongesit")
             break;
         default:
-            res.writeHead(404);
+            res.writeHead(200);
             res.end("MY CHILDHOOD BEST FRIEND. Type '/full-name' for full name");
 
 
