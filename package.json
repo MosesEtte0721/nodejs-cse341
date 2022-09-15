@@ -1,7 +1,7 @@
 {
   "name": "nodejs-cse341",
   "version": "1.0.0",
-  "description": "creating server with node.js",
+  "description": "creating server and routes with node.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MosesEtte0721/nodejs-cse341/issues"
   },
-  "homepage": "https://github.com/MosesEtte0721/nodejs-cse341#readme"
+  "homepage": "https://github.com/MosesEtte0721/nodejs-cse341#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
