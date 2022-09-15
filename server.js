@@ -19,7 +19,7 @@ let reqlisten = function(req, res){
             break;
         default:
             res.writeHead(404);
-            res.end("MY CHILDHOOD BEST FRIEND");
+            res.end("MY CHILDHOOD BEST FRIEND. Type '/full-name' for full name");
 
 
     }
