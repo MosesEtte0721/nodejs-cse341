@@ -1,13 +1,13 @@
 //const host = 'localhost';
-
+const mongoose = require("mongoose");
 const port = 3000;
-
 const express = require('express');
-
 const  app = express();
 
+mongoose.connect('mongodb+srv://mongoDB:mongoDB@cluster0.cr9frgg.mongodb.net/test')
+
 app.get('/', (req, res) => {
-    res.send('FIRST MESSAGE ON THE SERVER type "/fullName" in the address box after the 3000 ');
+    res.send('FIRST MESSAGE ON THE SERVER type "/fullName" in the address box after the 3000 ', ()=>{console.log('we are now connected to mongoDB')});
 })
 
 app.get('/firstName', (req, res) => {
