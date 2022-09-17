@@ -1,5 +1,5 @@
 //import mongoose package
-const mongose = require("mongoose");
+const mongoose = require("mongoose");
 //import express package
 const express = require('express');
 const port = 3000;
@@ -10,7 +10,7 @@ const host = 'localhost';
 const  app = express();
 
  //connect to MongoDB
- mongose.connect('mongodb+srv://MosesEtte:MosesEtte@cluster0.cr9frgg.mongodb.net/test', ()=>{console.log('connected to mongoDB')});
+ mongoose.connect('mongodb+srv://MosesEtte:MosesEtte@cluster0.cr9frgg.mongodb.net/test', ()=>{console.log('connected to mongoDB')});
 
 // creating server/router with express package
 app.get('/', (req, res) => {
