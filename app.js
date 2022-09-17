@@ -1,11 +1,19 @@
-//const host = 'localhost';
-const mongoose = require("mongoose");
+//import mongoose package
+const mongose = require("mongoose");
+
+// 
 const port = 3000;
+
+//import express package
 const express = require('express');
+//require('dotenv/config');
+
 const  app = express();
 
-mongoose.connect('mongodb+srv://mongoDB:mongoDB@cluster0.cr9frgg.mongodb.net/test')
+//connect to MongoDB
+mongose.connect('mongodb+srv://MosesEtte:MosesEtte@cluster0.cr9frgg.mongodb.net/test', ()=>{console.log('connected to mongoDB')});
 
+// creating server/router with express package
 app.get('/', (req, res) => {
     res.send('FIRST MESSAGE ON THE SERVER type "/fullName" in the address box after the 3000 ', ()=>{console.log('we are now connected to mongoDB')});
 })
