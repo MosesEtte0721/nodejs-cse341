@@ -34,9 +34,11 @@ const {ObjectId} = require('mongodb');
 //const client = new mongoClient();
 MongoClient.connect(process.env.mongoDB)
 .then((client) => {
+     console.log("Bravo! Successfully connected to mongodb")
     let db;
-    
-        console.log("Bravo! Successfully connected to mongodb")
+
+    //write multiple documents to the database
+    app.post('/', (req, res)=> {
         db = client.db()
         db.collection('Contact').insertMany([
             {
@@ -56,20 +58,21 @@ MongoClient.connect(process.env.mongoDB)
                 "email":"nemi@email.neo"
             }
         ])
+    })
+       
+        
     }
 ) .catch((error)=>{
     console.log(`Could not create the collection ${error}`)
-    return error;
+    
 });
 
+//return documents in collection to the browser
 app.get('/', (req, res) => {
     let array = []
     let db = db();
     db.collection('Contact').find()
     
-    .toArray()
-    .array.forEach(array => 
-        array.push('Contact'))
         .then(()=>{
             res.status(200).json(array)
 
@@ -85,9 +88,9 @@ app.get('/Contact/id', (req, res)=>{
     let db = db();
     db.collection('Contact').findOne({_id: ObjectId(req.params.id)})
 
-.then((doc)=>{
+.then(doc => {
     res.status(200).json(doc)
-}).catch((err)=>{
+}).catch( err=> {
     res.status(500).json({error: "Could not fetch the requested data"})
 })
 })
