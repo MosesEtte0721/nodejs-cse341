@@ -35,7 +35,7 @@ const {ObjectId} = require('mongodb');
 
 MongoClient.connect(process.env.mongoDB)
 .then(client=>{
-    let db = client.db();
+    let db = client.db('CSE341');
 
   
      console.log("Bravo! Successfully connected to mongodb")
@@ -84,7 +84,7 @@ app.get('/docs/id', (req, res)=>{
     
     
     db.collection('Contact')
-    .findOne({fName:"Jackson"})
+    .findOne({_id: ObjectId(req.params.id)})
 
     
 })
