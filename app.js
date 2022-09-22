@@ -7,7 +7,7 @@ const app = express();
 
 //import dotenv 
 require('dotenv/config');
-const port = 3000;
+const port = process.env.PORT || 3000;
 const hostname = '127.0.0.1';
 
 
@@ -38,7 +38,7 @@ MongoClient.connect(process.env.mongoDB)
     let db;
 
     //write multiple documents to the database
-    app.post('/', (req, res)=> {
+    app.post('/docs', (req, res)=> {
         db = client.db()
         db.collection('Contact').insertMany([
             {
