@@ -7,7 +7,7 @@ const app = express();
 
 //import dotenv 
 require('dotenv/config');
-const port = process.env.PORT || 3000;
+const port = process.env.port || 3000;
 const hostname = '127.0.0.1';
 
 
@@ -32,14 +32,22 @@ const {ObjectId} = require('mongodb');
 
 // connecting to mongodb
 //const client = new mongoClient();
-MongoClient.connect(process.env.mongoDB)
-.then((client) => {
-     console.log("Bravo! Successfully connected to mongodb")
-    let db;
 
+MongoClient.connect(process.env.mongoDB)
+.then(client=>{
+    let db = client.db();
+
+
+
+    
+  
+     console.log("Bravo! Successfully connected to mongodb")
+    
+    
     //write multiple documents to the database
-    app.post('/docs', (req, res)=> {
-        db = client.db()
+    app.post('/', (req, res)=> {
+        
+        
         db.collection('Contact').insertMany([
             {
                 "fname": "Jackson",
@@ -61,16 +69,13 @@ MongoClient.connect(process.env.mongoDB)
     })
        
         
-    }
-) .catch((error)=>{
-    console.log(`Could not create the collection ${error}`)
     
-});
 
-//return documents in collection to the browser
-app.get('/', (req, res) => {
+    //return documents from the collection to the browser
+app.get('/docs', (req, res) => {
+    
+     //db = db();
     let array = []
-    let db = db();
     db.collection('Contact').find()
     
         .then(()=>{
@@ -84,9 +89,12 @@ app.get('/', (req, res) => {
 })
 
 
+//return a single document from the collection to the browser
 app.get('/Contact/id', (req, res)=>{
-    let db = db();
-    db.collection('Contact').findOne({_id: ObjectId(req.params.id)})
+    
+    
+    db.collection('Contact')
+    .findOne({_id: ObjectId(req.params.id)})
 
 .then(doc => {
     res.status(200).json(doc)
@@ -94,3 +102,18 @@ app.get('/Contact/id', (req, res)=>{
     res.status(500).json({error: "Could not fetch the requested data"})
 })
 })
+
+
+
+}).catch( err=> {
+    res.status(500).json({error: "Could not fetch the requested data"})
+})
+
+    
+    
+    
+    
+    
+    
+    
+   
