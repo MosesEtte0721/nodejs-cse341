@@ -1,5 +1,6 @@
 // import express package
 const express = require('express');
+const res = require('express/lib/response');
 const app = express();
 
 //import mongobd drive
@@ -26,6 +27,7 @@ app.listen(port, (error) => {
 })
 
 const {MongoClient}= require('mongodb');
+const {ObjectId} = require('mongodb');
 //const { Db } = require('mongoose/node_modules/mongodb');
 
 // connecting to mongodb
@@ -79,3 +81,13 @@ app.get('/', (req, res) => {
 })
 
 
+app.get('/Contact/id', (req, res)=>{
+    let db = db();
+    db.collection('Contact').findOne({_id: ObjectId(req.params.id)})
+
+.then((doc)=>{
+    res.status(200).json(doc)
+}).catch((err)=>{
+    res.status(500).json({error: "Could not fetch the requested data"})
+})
+})

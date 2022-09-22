@@ -4,7 +4,8 @@
   "description": "creating server and routes with node.js",
   "main": "index.js",
   "scripts": {
-    "start": " node app.js"
+    "start": " nodemon app.js"
+    
   },
   "repository": {
     "type": "git",
