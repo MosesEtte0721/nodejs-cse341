@@ -1,0 +1,2 @@
+//get mongodb+srv://MosesEtte:MosesEtte@cluster0.cr9frgg.mongodb.net/test
+get https://data.mongodb-api.com/app/data-apzdn/endpoint/data/v1
