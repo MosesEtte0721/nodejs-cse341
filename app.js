@@ -37,9 +37,6 @@ MongoClient.connect(process.env.mongoDB)
 .then(client=>{
     let db = client.db();
 
-
-
-    
   
      console.log("Bravo! Successfully connected to mongodb")
     
@@ -75,37 +72,27 @@ MongoClient.connect(process.env.mongoDB)
 app.get('/docs', (req, res) => {
     
      //db = db();
-    let array = []
+   // let array = []
     db.collection('Contact').find()
     
-        .then(()=>{
-            res.status(200).json(array)
-
-        })
-        .then((err)=>{
-            res.status(500).json({error: 'Could not fetch the requested file'})
-        })
     
 })
 
 
 //return a single document from the collection to the browser
-app.get('/Contact/id', (req, res)=>{
+app.get('/docs/id', (req, res)=>{
     
     
     db.collection('Contact')
-    .findOne({_id: ObjectId(req.params.id)})
+    .findOne({fName:"Jackson"})
 
-.then(doc => {
-    res.status(200).json(doc)
-}).catch( err=> {
-    res.status(500).json({error: "Could not fetch the requested data"})
-})
+    
 })
 
 
 
-}).catch( err=> {
+})
+.catch( err => {
     res.status(500).json({error: "Could not fetch the requested data"})
 })
 
