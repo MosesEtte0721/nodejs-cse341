@@ -18,13 +18,7 @@ app.get('/', (req, res) => {
 });
 
 //listenig to port 30000
-app.listen(port, (error) => {
-    if(error){ 
-        console.log(error, 'Could not connect to the server');
-    } else{
-        console.log(`Server sucessfully created. Running at ${hostname}:${port}`);
-    }
-})
+
 
 const {MongoClient}= require('mongodb');
 const {ObjectId} = require('mongodb');
@@ -40,7 +34,13 @@ MongoClient.connect(process.env.mongoDB)
   
      console.log("Bravo! Successfully connected to mongodb")
     
-    
+    app.listen(port, (error) => {
+    if(error){ 
+        console.log(error, 'Could not connect to the server');
+    } else{
+        console.log(`Server sucessfully created. Running at ${hostname}:${port}`);
+    }
+})
     //write multiple documents to the database
     app.post('/', (req, res)=> {
         
@@ -64,12 +64,9 @@ MongoClient.connect(process.env.mongoDB)
             }
         ])
     })
-       
         
-    
-
     //return documents from the collection to the browser
-app.get('/docs', (req, res) => {
+/*app.get('/docs', (req, res) => {
     
      //db = db();
    // let array = []
@@ -89,6 +86,28 @@ app.get('/docs/id', (req, res)=>{
     
 })
 
+*/
+app.post('/', (req, res)=> {
+        
+        db.collection('Close_contacts').insertMany([
+            {
+                "fname": "Moses",
+                "lName": "ette",
+                "email": "senatoette@gmail.com",
+                "major": "Applied Technology"
+            },
+            {
+                "fName": "Daniel",
+                "lName": "Ette",
+                "email":"dannyette@gmail.com"
+            },
+            {
+                "fName": "Edem",
+                "lName":"Edem",
+                "email":"mikereal@gmail.com"
+            }
+        ])
+    })
 
 
 })
